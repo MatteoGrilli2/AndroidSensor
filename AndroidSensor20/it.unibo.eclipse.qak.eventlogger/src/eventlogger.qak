@@ -1,0 +1,46 @@
+System eventlogger
+
+mqttBroker"192.168.1.247" : 1883
+
+Event androidsensor : androidsensor(X)
+
+Context ctxEventLogger ip [host="localhost" port=8090] +mqtt
+
+QActor eventlogger1 context ctxEventLogger {
+	State s0 initial {
+		println("Starting up event logger 1")
+	}
+	Goto waitForEvents
+	
+	State waitForEvents {
+		println("Logger 1 waiting for events...")
+	}
+	Transition t0 whenEvent androidsensor -> printEvent
+	
+	State printEvent {
+		onMsg(androidsensor : androidsensor(X)) {
+			println("Logger 1!")
+		}
+	}
+	Transition t0 whenEvent androidsensor -> printEvent
+}
+
+QActor eventlogger2 context ctxEventLogger {
+	State s0 initial {
+		println("Starting up event logger 2")
+	}
+	Goto waitForEvents
+	
+	State waitForEvents {
+		println("Logger 2 waiting for events...")
+	}
+	Transition t0 whenEvent androidsensor -> printEvent
+	
+	State printEvent {
+		onMsg(androidsensor : androidsensor(X)) {
+			println("Logger 2!")
+		}
+	}
+	Transition t0 whenEvent androidsensor -> printEvent
+}
+

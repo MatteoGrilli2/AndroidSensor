@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AndroidSensors</string>
+    <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="connecting">Connecting...</string>
+    <string name="mqtt_address">Mqtt broker address</string>
+    <string name="sendTo">Send to unibo/qak/</string>
+    <string name="sendToHint">events</string>
+    <string name="more_info">For more info, refer to the AndroidSensor report</string>
+</resources>

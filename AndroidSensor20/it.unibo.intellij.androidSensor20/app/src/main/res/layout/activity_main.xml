@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/appLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="0dp">
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/mqttLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="124dp"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="0dp">
+            <EditText
+                    android:id="@+id/mqttAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/mqttButton"
+                    android:layout_alignParentTop="true"
+                    android:layout_toStartOf="@+id/mqttButton"
+                    android:hint="@string/mqtt_address"/>
+            <Button
+                    android:id="@+id/mqttButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="@string/connect"/>
+            <TextView android:id="@+id/sendToTextView"
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:layout_above="@+id/tableHeader"
+                      android:layout_below="@+id/mqttAddress"
+                      android:layout_alignParentStart="true"
+                      android:gravity="center"
+                      android:text="@string/sendTo"
+                      android:textSize="18sp"/>
+            <EditText
+                    android:id="@+id/sendToEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/tableHeader"
+                    android:layout_below="@+id/mqttAddress"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toStartOf="@+id/mqttButton"
+                    android:layout_toEndOf="@+id/sendToTextView"
+                    android:hint="@string/sendToHint"/>
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                         android:layout_width="fill_parent"
+                         android:layout_height="wrap_content"
+                         android:stretchColumns="0"
+                         android:id="@+id/tableHeader"
+                         android:layout_alignParentBottom="true"
+                         android:layout_marginTop="4dp">
+                <TableRow android:id="@+id/headerRow"
+                          android:layout_width="fill_parent"
+                          android:layout_height="wrap_content"
+                          tools:ignore="UselessParent">
+                    <CheckBox android:id="@+id/checkAll"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:background="@color/tableHeader"/>
+                </TableRow>
+            </TableLayout>
+        </RelativeLayout>
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/mqttLayout"
+                    android:layout_above="@id/moreInfoText"
+                    android:paddingBottom="10dp">
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                         android:layout_width="fill_parent"
+                         android:layout_height="wrap_content"
+                         android:stretchColumns="0"
+                         android:id="@+id/tableLayout">
+
+            </TableLayout>
+        </ScrollView>
+        <TextView android:id="@+id/moreInfoText"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentBottom="true"
+                  android:text="@string/more_info"
+                  android:gravity="center"/>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,50 @@
+package com.unibo.androidrobot
+
+import android.content.Context
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+
+private const val TAG  = "Androidrobot"
+
+class MainActivity : AppCompatActivity(), SensorEventListener {
+
+    private lateinit var mSensorManager: SensorManager
+    private var mLight: Sensor? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Retrieve light sensor if any (in Huawei P9 Lite, it's "light-bh1745")
+
+        mSensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        mLight = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
+        Log.v(TAG, "Light sensor: " + mLight?.name)
+    }
+
+    override fun onSensorChanged(event: SensorEvent?) {
+        // Log light level
+        val lux = event?.values?.get(0)
+        Log.v(TAG, "Light level: $lux")
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+        Log.v(TAG, "onAccuracyChanged")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mLight?.also {  mSensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_NORMAL)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mSensorManager.unregisterListener(this)
+    }
+}

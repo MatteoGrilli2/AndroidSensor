@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+          android:id="@+id/row"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content">
+    <CheckBox android:id="@+id/checkbox"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:text="sensor_name"/>
+    <ImageView
+            android:id="@+id/doc_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@+string/docs"
+            android:padding="10dp"
+            android:src="@drawable/doc_icon"
+    />
+</TableRow>
